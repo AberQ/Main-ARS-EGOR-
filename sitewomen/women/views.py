@@ -43,7 +43,16 @@ def show_post(request, post_slug):
 
 
 def addpage(request):
-    return HttpResponse("Добавление статьи")
+    posts = Women.published.all().select_related('cat')
+
+    data = {
+        'title': 'Добавить статью',
+        'menu': menu,
+        'posts': posts,
+        'cat_selected': 0,
+    }
+
+    return render(request, 'women/add_page.html', data)
 
 
 def contact(request):
