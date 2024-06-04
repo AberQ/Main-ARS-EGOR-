@@ -5,9 +5,11 @@
 {% with post.tags.all as tags %}
 {% if tags %}
 <ul class="tags-list">
-    <li>Теги:</li>
+    <span>Теги</span>
     {% for t in tags %}
-    <li><a href="{{t.get_absolute_url}}">{{t.tag}}</a></li>
+    <li>
+      <a class="btn" href="{{t.get_absolute_url}}">{{t.tag}}</a>
+    </li>
     {% endfor %}
 </ul>
 {% endif %}

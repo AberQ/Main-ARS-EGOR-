@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.template.loader import render_to_string
 from django.template.defaultfilters import slugify
-
+from .forms import AddPostForm
 from .models import Women, Category, TagPost
 
 menu = [{'title': "О сайте", 'url_name': 'about'},
@@ -41,19 +41,27 @@ def show_post(request, post_slug):
 
     return render(request, 'women/post.html', data)
 
-
-def addpage(request):
-    posts = Women.published.all().select_related('cat')
-
-    data = {
-        'title': 'Добавить статью',
-        'menu': menu,
-        'posts': posts,
-        'cat_selected': 0,
-    }
-
+def addpage(request): 
+    if request.method == 'POST': 
+        form = AddPostForm(request.POST) 
+        if form.is_valid(): 
+            # print(form.cleaned_data) 
+            # try: 
+            #     Women.objects.create(**form.cleaned_data) 
+            #     return redirect('home') 
+            # except: 
+            #     form.add_error(None, "Ошибка добавления поста") 
+            form.save() 
+            return redirect('home') 
+    else: 
+        form = AddPostForm() 
+ 
+    data = { 
+        'menu': menu, 
+        'title': 'Добавление статьи', 
+        'form': form 
+    } 
     return render(request, 'women/add_page.html', data)
-
 
 def contact(request):
     return HttpResponse("Обратная связь")

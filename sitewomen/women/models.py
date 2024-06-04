@@ -13,16 +13,16 @@ class Women(models.Model):
         PUBLISHED = 1, 'Опубликовано'
 
     title = models.CharField(max_length=255, verbose_name="Заголовок")
-    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="Slug")
-    content = models.TextField(blank=True, verbose_name="Текст статьи")
+    slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name="URL")
+    content = models.TextField(blank=True, verbose_name="Описание")
     time_create = models.DateTimeField(auto_now_add=True, verbose_name="Время создания")
     time_update = models.DateTimeField(auto_now=True, verbose_name="Время изменения")
     is_published = models.BooleanField(choices=tuple(map(lambda x: (bool(x[0]), x[1]), Status.choices)),
-                                       default=Status.DRAFT, verbose_name="Статус")
-    cat = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='posts', verbose_name="Категории")
-    tags = models.ManyToManyField('TagPost', blank=True, related_name='tags', verbose_name="Теги")
+                                       default=Status.DRAFT, verbose_name="Статус:")
+    cat = models.ForeignKey('Category', on_delete=models.PROTECT, related_name='posts', verbose_name="Категория:")
+    tags = models.ManyToManyField('TagPost', blank=True, related_name='tags', verbose_name="Тег:")
     husband = models.OneToOneField('Husband', on_delete=models.SET_NULL,
-                                   null=True, blank=True, related_name='wuman', verbose_name="Муж")
+                                   null=True, blank=True, related_name='wuman', verbose_name="Муж:")
 
     objects = models.Manager()
     published = PublishedManager()
