@@ -4,3 +4,4 @@
 -HTML,CSS
 -Django
 -SQLite
+-JavaScript(чуть-чуть)
