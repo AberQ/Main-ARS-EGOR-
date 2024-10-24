@@ -8,14 +8,14 @@ import sys
 sys.dont_write_bytecode = True 
  
 if __name__ == "__main__": 
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sitewomen.settings") 
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "base.settings") 
     from django.core.management import execute_from_command_line 
     execute_from_command_line(sys.argv) 
 os.environ['PYTHONDONTWRITEBYTECODE'] = '1'
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'sitewomen.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'base.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

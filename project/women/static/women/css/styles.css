@@ -18,7 +18,19 @@
   margin: 0;
 }
 
-h1,
+h1 {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #555;
+}
+
 h2,
 h3,
 h4,

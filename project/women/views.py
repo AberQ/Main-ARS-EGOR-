@@ -9,7 +9,7 @@ from .models import Women, Category, TagPost
 menu = [{'title': "О сайте", 'url_name': 'about'},
         {'title': "Добавить статью", 'url_name': 'add_page'},
         {'title': "Обратная связь", 'url_name': 'contact'},
-        {'title': "Войти", 'url_name': 'login'}
+        
 ]
 
 
@@ -64,7 +64,7 @@ def addpage(request):
     return render(request, 'women/add_page.html', data)
 
 def contact(request):
-    return HttpResponse("Обратная связь")
+    return render(request, 'women/contact.html', {'title': 'О сайте', 'menu': menu})
 
 
 def login(request):
